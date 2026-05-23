@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AcadFlow Progress</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+/* RESET */
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:#f4f7fb;
+}
+
+/* NAV (UNCHANGED STYLE) */
+nav {
+  background: #1F3C88;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 10px;
+  align-items: center;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 10px 16px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: 0.3s;
+}
+
+nav ul li a:hover {
+  background: #64748b;
+  color: white;
+}
+
+/* ACTIVE TAB (LIKE YOUR IMAGE) */
+nav ul li a.active {
+  background: #1F3C88;
+  color: white;
+  font-weight: 600;
+}
+
+nav img{
+border-radius:50%;
+}
+
+/* CONTAINER */
+.container{
+padding:40px;
+}
+
+.section-title{
+font-size:40px;
+color:#0f172a;
+}
+
+.subtitle{
+color:#64748b;
+margin-bottom:20px;
+}
+
+/* STATS */
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+margin-bottom:25px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.card h2{
+margin:0;
+font-size:28px;
+}
+
+/* BUTTONS */
+button{
+background:#2563eb;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:8px;
+cursor:pointer;
+margin-right:8px;
+margin-bottom:15px;
+}
+
+/* MODULES */
+.subject{
+margin-bottom:15px;
+}
+
+.progress-bar{
+background:#e2e8f0;
+height:25px;
+border-radius:20px;
+overflow:hidden;
+}
+
+.progress{
+height:100%;
+width:0%;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-size:12px;
+transition:0.4s;
+}
+
+.math{background:#2563eb;}
+.it{background:#16a34a;}
+.db{background:#f97316;}
+.net{background:#ef4444;}
+
+/* BADGES */
+.badges{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+margin-top:15px;
+}
+
+.badge{
+display:flex;
+align-items:center;
+gap:8px;
+padding:8px 12px;
+border-radius:20px;
+font-size:12px;
+color:white;
+font-weight:bold;
+}
+
+.trophy{background:#504d47;}
+.study{background:#2563eb;}
+.streak{background:#16a34a;}
+.warning{background:#ef4444;}
+
+/* FOOTER */
+
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #1F3C88;
+  color: white;
+  text-align: center;
+  padding: 2px 10px;
+  font-size: 16px;
+  line-height: 0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV (UNCHANGED) -->
+<nav>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVZ1IVTA1WvC8ag5BI8u6sHrsdgaBelxXQew&s" width="80" height="80">
+
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="tasks.html">Tasks</a></li>
+<li><a href="planner.html">Planner</a></li>
+<li><a href="resources.html">Resources</a></li>
+<li><a href="studytips.html">Study Tips</a></li>
+<li><a href="progress.html">Progress</a></li>
+<li><a href="focus.html">Focus</a></li>
+</ul>
+</nav>
+
+<!-- MAIN -->
+<div class="container">
+
+<h1 class="section-title">Student Progress Dashboard</h1>
+<p class="subtitle">Track your performance and achievements</p>
+
+<!-- STATS -->
+<div class="stats">
+<div class="card">
+<h2 id="tasks">47</h2>
+<p>Tasks Completed</p>
+</div>
+
+<div class="card">
+<h2 id="hours">38.5</h2>
+<p>Study Hours</p>
+</div>
+
+<div class="card">
+<h2 id="streak">15</h2>
+<p>Streak</p>
+</div>
+</div>
+
+<!-- BUTTONS -->
+<button onclick="completeTask()">Complete Task</button>
+<button onclick="studyHour()">Study Hour</button>
+<button onclick="missDeadline()">Miss Deadline</button>
+
+<!-- MODULES -->
+<h2>University Modules</h2>
+
+<div class="subject">
+<h4>Information Technology</h4>
+<div class="progress-bar">
+<div id="it" class="progress it"></div>
+</div>
+</div>
+
+<div class="subject">
+<h4>Database Systems</h4>
+<div class="progress-bar">
+<div id="db" class="progress db"></div>
+</div>
+</div>
+
+<div class="subject">
+<h4>Networking</h4>
+<div class="progress-bar">
+<div id="net" class="progress net"></div>
+</div>
+</div>
+
+<div class="subject">
+<h4>Mathematics</h4>
+<div class="progress-bar">
+<div id="math" class="progress math"></div>
+</div>
+</div>
+
+<!-- BADGES -->
+<h2>Achievement Badges</h2>
+<div class="badges" id="badges"></div>
+
+</div>
+
+
+
+<script>
+
+let tasks = 47;
+let hours = 38.5;
+let streak = 15;
+
+let it = 60;
+let db = 55;
+let net = 50;
+let math = 70;
+
+/* UPDATE BARS */
+function update(){
+document.getElementById("it").style.width = it + "%";
+document.getElementById("it").innerText = it + "%";
+
+document.getElementById("db").style.width = db + "%";
+document.getElementById("db").innerText = db + "%";
+
+document.getElementById("net").style.width = net + "%";
+document.getElementById("net").innerText = net + "%";
+
+document.getElementById("math").style.width = math + "%";
+document.getElementById("math").innerText = math + "%";
+}
+
+update();
+
+/* BADGE SYSTEM */
+function addBadge(type, text){
+
+let icon = "";
+
+if(type === "trophy") icon = "🏆";
+if(type === "study") icon = "📘";
+if(type === "streak") icon = "⚡";
+if(type === "warning") icon = "⚠";
+
+let badge = document.createElement("div");
+badge.className = "badge " + type;
+badge.innerHTML = `${icon} ${text}`;
+
+document.getElementById("badges").appendChild(badge);
+}
+
+/* ACTIONS */
+
+function completeTask(){
+tasks++;
+document.getElementById("tasks").innerText = tasks;
+
+it = Math.min(100, it + 2);
+math = Math.min(100, math + 1);
+
+addBadge("trophy", "Task Completed");
+update();
+}
+
+function studyHour(){
+hours++;
+document.getElementById("hours").innerText = hours.toFixed(1);
+
+db = Math.min(100, db + 2);
+
+addBadge("study", "Study Session Done");
+update();
+}
+
+function missDeadline(){
+net = Math.max(0, net - 3);
+
+addBadge("warning", "Deadline Missed");
+update();
+}
+
+</script>
+<!-- FOOTER -->
+<footer>
+<p>© 2026 AcadFlow Academic Support Website</p>
+</footer>
+</body>
+</html>

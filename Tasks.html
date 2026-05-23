@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AcadFlow Tasks</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f7fb;
+}
+
+/* NAVBAR */
+
+
+/* NAV (UNCHANGED STYLE) */
+nav {
+  background: #1F3C88;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 10px;
+  align-items: center;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 10px 16px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: 0.3s;
+}
+
+nav ul li a:hover {
+  background: #64748b;
+  color: white;
+}
+
+/* ACTIVE TAB (LIKE YOUR IMAGE) */
+nav ul li a.active {
+  background: #1F3C88;
+  color: white;
+  font-weight: 600;
+}
+
+/* CONTAINER */
+
+.container{
+padding:40px;
+}
+
+.top-section{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+flex-wrap:wrap;
+gap:20px;
+}
+
+.section-title{
+font-size:42px;
+color:#0f172a;
+}
+
+.subtitle{
+margin-top:8px;
+color:#64748b;
+}
+
+/* ADD BUTTON */
+
+.add-btn{
+background:#2563eb;
+color:white;
+border:none;
+padding:15px 25px;
+border-radius:12px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.add-btn:hover{
+background:#1d4ed8;
+}
+
+/* TASK SECTIONS */
+
+.task-heading{
+font-size:32px;
+margin-bottom:25px;
+color:#0f172a;
+}
+
+/* TASK CARD */
+
+.task-card{
+background:white;
+padding:25px;
+border-radius:18px;
+margin-bottom:20px;
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+box-shadow:0 2px 10px rgba(0,0,0,0.08);
+transition:0.3s;
+}
+
+.task-card:hover{
+transform:translateY(-3px);
+}
+
+.task-left{
+display:flex;
+gap:18px;
+align-items:flex-start;
+}
+
+.task-check{
+margin-top:8px;
+width:22px;
+height:22px;
+cursor:pointer;
+}
+
+.task-title{
+font-size:18px;
+font-weight:bold;
+margin-bottom:12px;
+}
+
+.task-details{
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+color:#64748b;
+font-size:15px;
+}
+
+/* PRIORITY */
+
+.priority{
+padding:6px 12px;
+border-radius:20px;
+font-size:13px;
+font-weight:bold;
+}
+
+.high{
+background:#fee2e2;
+color:#dc2626;
+}
+
+.medium{
+background:#fef3c7;
+color:#ca8a04;
+}
+
+.low{
+background:#dcfce7;
+color:#16a34a;
+}
+
+/* DELETE BUTTON */
+
+.delete-btn{
+background:none;
+border:none;
+font-size:20px;
+cursor:pointer;
+color:#94a3b8;
+}
+.deadline-message{
+font-size:14px;
+}
+.delete-btn:hover{
+color:#ef4444;
+}
+
+/* COMPLETED */
+
+.completed .task-title{
+text-decoration:line-through;
+opacity:0.6;
+}
+
+.completed{
+opacity:0.7;
+}
+
+/* POPUP */
+
+.overlay{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.4);
+z-index:999;
+}
+
+.popup{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:30px;
+border-radius:20px;
+width:350px;
+z-index:1000;
+box-shadow:0 5px 20px rgba(0,0,0,0.2);
+}
+
+.popup h2{
+margin-bottom:20px;
+}
+
+.popup input,
+.popup select{
+width:100%;
+padding:12px;
+margin-bottom:15px;
+border:1px solid #ccc;
+border-radius:10px;
+}
+
+.save-btn{
+background:#2563eb;
+color:white;
+border:none;
+padding:12px;
+width:100%;
+border-radius:10px;
+font-size:16px;
+cursor:pointer;
+}
+
+/* FOOTER */
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #1F3C88;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav>
+<img 
+    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVZ1IVTA1WvC8ag5BI8u6sHrsdgaBelxXQew&s" 
+    alt="Student Icon"
+    width="100"
+    height="100"
+    style="border-radius: 50%;"
+> 
+
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="tasks.html">Tasks</a></li>
+<li><a href="planner.html">Planner</a></li>
+<li><a href="resources.html">Resources</a></li>
+<li><a href="studytips.html">Study Tips</a></li>
+<li><a href="progress.html">Progress</a></li>
+<li><a href="focus.html">Focus</a></li>
+</ul>
+
+</nav>
+
+<!-- MAIN -->
+
+<div class="container">
+
+<div class="top-section">
+
+<div>
+
+<h2 class="section-title">
+Academic Tasks
+</h2>
+
+<p class="subtitle">
+Manage and track your academic assignments
+</p>
+
+</div>
+
+<button class="add-btn"
+onclick="openPopup()">
+
+<i class="fa-solid fa-plus"></i>
+Add Task
+
+</button>
+
+</div>
+
+<!-- ACTIVE TASKS -->
+
+<h3 class="task-heading">
+Active Tasks
+(<span id="activeCount">3</span>)
+</h3>
+
+<div id="activeTasks">
+
+<!-- TASK 1 -->
+
+<div class="task-card">
+
+<div class="task-left">
+
+<input type="checkbox"
+class="task-check"
+onchange="completeTask(this)">
+
+<div>
+
+<div class="task-title">
+Complete Math Assignment Chapter 5
+</div>
+
+<div class="task-details">
+
+<span>Mathematics</span>
+
+<span>Due: 2026-05-25</span>
+
+<span class="priority high">
+high
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+<button class="delete-btn"
+onclick="deleteTask(this)">
+<i class="fa-regular fa-trash-can"></i>
+</button>
+
+</div>
+
+<!-- TASK 2 -->
+
+<div class="task-card">
+
+<div class="task-left">
+
+<input type="checkbox"
+class="task-check"
+onchange="completeTask(this)">
+
+<div>
+
+<div class="task-title">
+Read History Textbook Pages 120-145
+</div>
+
+<div class="task-details">
+
+<span>History</span>
+
+<span>Due: 2026-06-26</span>
+
+<span class="priority medium">
+medium
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+<button class="delete-btn"
+onclick="deleteTask(this)">
+<i class="fa-regular fa-trash-can"></i>
+</button>
+
+</div>
+
+<!-- TASK 3 -->
+
+<div class="task-card">
+
+<div class="task-left">
+
+<input type="checkbox"
+class="task-check"
+onchange="completeTask(this)">
+
+<div>
+
+<div class="task-title">
+Prepare Chemistry Lab Report
+</div>
+
+<div class="task-details">
+
+<span>Chemistry</span>
+
+<span>Due: 2026-05-20</span>
+
+<span class="priority high">
+high
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+<button class="delete-btn"
+onclick="deleteTask(this)">
+<i class="fa-regular fa-trash-can"></i>
+</button>
+
+</div>
+
+</div>
+
+<!-- COMPLETED -->
+
+<h3 class="task-heading"
+style="margin-top:50px;">
+
+Completed Tasks
+(<span id="completedCount">0</span>)
+
+</h3>
+
+<div id="completedTasks"></div>
+
+</div>
+
+<!-- POPUP -->
+
+<div class="overlay"
+id="overlay"></div>
+
+<div class="popup"
+id="popup">
+
+<h2>Add New Task</h2>
+
+<input type="text"
+id="taskTitle"
+placeholder="Task Title">
+
+<input type="text"
+id="taskSubject"
+placeholder="Subject">
+
+<input type="date"
+id="taskDate">
+
+<select id="taskPriority">
+
+<option value="high">High Priority</option>
+
+<option value="medium">Medium Priority</option>
+
+<option value="low">Low Priority</option>
+
+</select>
+
+<button class="save-btn"
+onclick="addTask()">
+
+Save Task
+
+</button>
+
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+<p>© 2026 AcadFlow Academic Support Website</p>
+</footer>
+
+<!-- JAVASCRIPT -->
+
+<script>
+/* CHECK MISSED DEADLINES */
+
+function checkDeadlines(){
+
+let today = new Date();
+
+let tasks =
+document.querySelectorAll("#activeTasks .task-card");
+
+tasks.forEach(task => {
+
+let dueText =
+task.querySelector(".task-details span:nth-child(2)")
+.innerText;
+
+let dueDate =
+dueText.replace("Due: ","");
+
+let taskDate =
+new Date(dueDate);
+
+if(taskDate < today){
+
+task.style.border =
+"2px solid red";
+
+if(!task.querySelector(".deadline-message")){
+
+let message =
+document.createElement("p");
+
+message.classList.add("deadline-message");
+
+message.style.color = "red";
+message.style.marginTop = "10px";
+message.style.fontWeight = "bold";
+
+message.innerText =
+"Deadline missed. Please reschedule this task.";
+
+task.querySelector(".task-left div")
+.appendChild(message);
+
+}
+
+}
+
+});
+
+}
+
+/* RUN DEADLINE CHECK */
+
+checkDeadlines();
+/* COUNTS */
+
+let activeCount = 3;
+let completedCount = 0;
+
+/* OPEN POPUP */
+
+function openPopup(){
+
+document.getElementById("popup")
+.style.display = "block";
+
+document.getElementById("overlay")
+.style.display = "block";
+
+}
+
+/* CLOSE POPUP */
+
+function closePopup(){
+
+document.getElementById("popup")
+.style.display = "none";
+
+document.getElementById("overlay")
+.style.display = "none";
+
+}
+
+/* ADD TASK */
+
+function addTask(){
+
+let title =
+document.getElementById("taskTitle").value;
+
+let subject =
+document.getElementById("taskSubject").value;
+
+let date =
+document.getElementById("taskDate").value;
+
+let priority =
+document.getElementById("taskPriority").value;
+
+if(title==="" ||
+subject==="" ||
+date===""){
+
+alert("Please fill all fields");
+return;
+
+}
+
+let task =
+document.createElement("div");
+
+task.classList.add("task-card");
+
+task.innerHTML = `
+
+<div class="task-left">
+
+<input type="checkbox"
+class="task-check"
+onchange="completeTask(this)">
+
+<div>
+
+<div class="task-title">
+${title}
+</div>
+
+<div class="task-details">
+
+<span>${subject}</span>
+
+<span>Due: ${date}</span>
+
+<span class="priority ${priority}">
+${priority}
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+<button class="delete-btn"
+onclick="deleteTask(this)">
+<i class="fa-regular fa-trash-can"></i>
+</button>
+
+`;
+
+document.getElementById("activeTasks")
+.appendChild(task);
+
+activeCount++;
+
+document.getElementById("activeCount")
+.innerText = activeCount;
+
+/* RESET */
+
+document.getElementById("taskTitle").value="";
+document.getElementById("taskSubject").value="";
+document.getElementById("taskDate").value="";
+
+closePopup();
+
+}
+
+/* COMPLETE TASK */
+
+function completeTask(checkbox){
+
+let task =
+checkbox.closest(".task-card");
+
+task.classList.add("completed");
+
+document.getElementById("completedTasks")
+.appendChild(task);
+
+activeCount--;
+completedCount++;
+
+document.getElementById("activeCount")
+.innerText = activeCount;
+
+document.getElementById("completedCount")
+.innerText = completedCount;
+
+checkbox.disabled = true;
+
+}
+
+/* DELETE TASK */
+
+function deleteTask(button){
+
+let task =
+button.closest(".task-card");
+
+if(task.parentElement.id ===
+"completedTasks"){
+
+completedCount--;
+
+document.getElementById("completedCount")
+.innerText = completedCount;
+
+}else{
+
+activeCount--;
+
+document.getElementById("activeCount")
+.innerText = activeCount;
+
+}
+
+task.remove();
+
+}
+
+</script>
+
+</body>
+</html>
+
+
+
+
+</body>
+</html>

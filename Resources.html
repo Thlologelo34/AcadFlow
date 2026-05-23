@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AcadFlow Resources</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+}
+
+body{
+background:#f4f7fb;
+}
+
+/* NAVBAR */
+
+/* NAV (UNCHANGED STYLE) */
+nav {
+  background: #1F3C88;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 10px;
+  align-items: center;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 10px 16px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: 0.3s;
+}
+
+nav ul li a:hover {
+  background: #64748b;
+  color: white;
+}
+
+/* ACTIVE TAB (LIKE YOUR IMAGE) */
+nav ul li a.active {
+  background: #1F3C88;
+  color: white;
+  font-weight: 600;
+}
+
+/* MAIN */
+
+.container{
+padding:40px;
+}
+
+.section-title{
+text-align:center;
+font-size:32px;
+margin-bottom:30px;
+color:#1e293b;
+}
+
+/* SEARCH */
+
+.search-box{
+display:flex;
+justify-content:center;
+margin-bottom:30px;
+}
+
+.search-box input{
+width:400px;
+padding:12px;
+border-radius:8px;
+border:1px solid #ccc;
+font-size:16px;
+}
+
+/* UPLOAD */
+
+.upload-box{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+text-align:center;
+margin-bottom:30px;
+}
+
+.upload-btn{
+background:#2563eb;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:8px;
+margin-top:15px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.upload-btn:hover{
+background:#1d4ed8;
+}
+
+/* RESOURCE CARDS */
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:20px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+text-align:center;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card i{
+font-size:45px;
+margin-bottom:15px;
+}
+
+.pdf-icon{
+color:#dc2626;
+}
+
+.word-icon{
+color:#2563eb;
+}
+
+.card h3{
+margin-bottom:10px;
+}
+
+.card p{
+margin-bottom:15px;
+color:#555;
+}
+
+/* BUTTONS */
+
+.btn-group{
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.download-btn{
+background:#16a34a;
+color:white;
+padding:10px 15px;
+text-decoration:none;
+border-radius:8px;
+font-size:14px;
+}
+
+.view-btn{
+background:#2563eb;
+color:white;
+padding:10px 15px;
+text-decoration:none;
+border-radius:8px;
+font-size:14px;
+}
+
+.delete-btn{
+background:#dc2626;
+color:white;
+padding:10px 15px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:14px;
+}
+
+/* FOOTER */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #1F3C88;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav>
+
+<img 
+src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVZ1IVTA1WvC8ag5BI8u6sHrsdgaBelxXQew&s" 
+alt="Student Icon"
+width="100"
+height="100"
+style="border-radius: 50%;"
+> 
+
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="tasks.html">Tasks</a></li>
+<li><a href="planner.html">Planner</a></li>
+<li><a href="resources.html">Resources</a></li>
+<li><a href="studytips.html">Study Tips</a></li>
+<li><a href="progress.html">Progress</a></li>
+<li><a href="focus.html">Focus</a></li>
+</ul>
+
+</nav>
+
+<!-- MAIN CONTENT -->
+
+<div class="container">
+
+<h2 class="section-title">Study Resources</h2>
+
+<!-- SEARCH -->
+
+<div class="search-box">
+
+<input type="text"
+id="searchInput"
+placeholder="Search resources...">
+
+</div>
+
+<!-- UPLOAD -->
+
+<div class="upload-box">
+
+<h3>Upload Study Resources</h3>
+
+<p style="margin-top:10px; color:#555;">
+Upload PDF or Word documents
+</p>
+
+<br>
+
+<input type="file"
+id="fileUpload"
+accept=".pdf,.doc,.docx">
+
+<br>
+
+<button class="upload-btn"
+onclick="uploadFile()">
+Upload File
+</button>
+
+</div>
+
+<!-- RESOURCE CARDS -->
+
+<div class="cards" id="resourceContainer">
+
+<!-- RESOURCE 1 -->
+
+<div class="card">
+
+<i class="fa-solid fa-file-pdf pdf-icon"></i>
+
+<h3>Business Management Notes</h3>
+
+<p>Lecture summaries and business concepts.</p>
+
+<div class="btn-group">
+
+<a href="pdfs/business-notes.pdf"
+class="view-btn"
+target="_blank">
+View
+</a>
+
+<a href="pdfs/business-notes.pdf"
+class="download-btn"
+download>
+Download
+</a>
+
+<button class="delete-btn"
+onclick="deleteCard(this)">
+Delete
+</button>
+
+</div>
+
+</div>
+
+<!-- RESOURCE 2 -->
+
+<div class="card">
+
+<i class="fa-solid fa-file-word word-icon"></i>
+
+<h3>Assignment Template</h3>
+
+<p>Word document template for assignments.</p>
+
+<div class="btn-group">
+
+<a href="documents/template.docx"
+class="view-btn"
+target="_blank">
+View
+</a>
+
+<a href="documents/template.docx"
+class="download-btn"
+download>
+Download
+</a>
+
+<button class="delete-btn"
+onclick="deleteCard(this)">
+Delete
+</button>
+
+</div>
+
+</div>
+
+<!-- RESOURCE 3 -->
+
+<div class="card">
+
+<i class="fa-solid fa-file-pdf pdf-icon"></i>
+
+<h3>Past Exam Papers</h3>
+
+<p>Practice previous examination papers.</p>
+
+<div class="btn-group">
+
+<a href="pdfs/past-papers.pdf"
+class="view-btn"
+target="_blank">
+View
+</a>
+
+<a href="pdfs/past-papers.pdf"
+class="download-btn"
+download>
+Download
+</a>
+
+<button class="delete-btn"
+onclick="deleteCard(this)">
+Delete
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+<p>© 2026 AcadFlow Academic Support Website</p>
+</footer>
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+/* SEARCH */
+
+document.getElementById("searchInput")
+.addEventListener("keyup", function(){
+
+let filter = this.value.toLowerCase();
+
+let cards = document.querySelectorAll(".card");
+
+cards.forEach(card => {
+
+let text = card.innerText.toLowerCase();
+
+card.style.display =
+text.includes(filter)
+? "block"
+: "none";
+
+});
+
+});
+
+/* UPLOAD FILE */
+
+function uploadFile(){
+
+let fileInput =
+document.getElementById("fileUpload");
+
+let file =
+fileInput.files[0];
+
+if(!file){
+
+alert("Please select a file.");
+return;
+
+}
+
+let allowedTypes = [
+"application/pdf",
+"application/msword",
+"application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+];
+
+if(!allowedTypes.includes(file.type)){
+
+alert("Only PDF and Word documents are allowed.");
+return;
+
+}
+
+let container =
+document.getElementById("resourceContainer");
+
+let card =
+document.createElement("div");
+
+card.classList.add("card");
+
+let fileURL =
+URL.createObjectURL(file);
+
+let iconClass =
+file.type === "application/pdf"
+? "fa-file-pdf pdf-icon"
+: "fa-file-word word-icon";
+
+let description =
+file.type === "application/pdf"
+? "PDF study material uploaded by student."
+: "Word document uploaded by student.";
+
+card.innerHTML = `
+
+<i class="fa-solid ${iconClass}"></i>
+
+<h3>${file.name}</h3>
+
+<p>${description}</p>
+
+<div class="btn-group">
+
+<a href="${fileURL}"
+class="view-btn"
+target="_blank">
+View
+</a>
+
+<a href="${fileURL}"
+class="download-btn"
+download="${file.name}">
+Download
+</a>
+
+<button class="delete-btn"
+onclick="deleteCard(this)">
+Delete
+</button>
+
+</div>
+
+`;
+
+container.appendChild(card);
+
+fileInput.value = "";
+
+alert("File uploaded successfully!");
+
+}
+
+/* DELETE */
+
+function deleteCard(button){
+
+button.parentElement.parentElement.remove();
+
+}
+
+</script>
+
+</body>
+</html>
